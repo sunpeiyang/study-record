@@ -125,17 +125,15 @@ demo：
 
     $spreadsheet = IOFactory::load('temp.xlsx');
 
-	$worksheet = $spreadsheet->getActiveSheet();
+    $worksheet = $spreadsheet->getActiveSheet();
 
-//	$worksheet->getCell('A1')->setValue('John');
-	$worksheet->getCell('A2')->setValue('Smith');
-	$worksheet->getCell('D2')->setValue('123456789654123');
-	$worksheet->getCell('E2')->setValue('6222222784565154');
-	//通过工厂模式来写内容
-	$writer = IOFactory::createWriter($spreadsheet, 'Xls');
-	$writer->save('twrite.xls');
-    
-    
+//    $worksheet->getCell('A1')->setValue('John');
+    $worksheet->getCell('A2')->setValue('Smith');
+    $worksheet->getCell('D2')->setValue('123456789654123');
+    $worksheet->getCell('E2')->setValue('6222222784565154');
+    //
+    $writer = IOFactory::createWriter($spreadsheet, 'Xls');
+    $writer->save('twrite.xls');
 ?>
 ```
 
