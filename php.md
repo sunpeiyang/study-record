@@ -86,7 +86,7 @@ composer install
 
 会生成vendor 目录并安装对应的库。
 
-demo：
+> demo：
 
 ```
 <?php
