@@ -97,11 +97,11 @@ demo：
     use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
     use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
     use PhpOffice\PhpSpreadsheet\Cell\DataType;
-    
+
     $spreadsheet = new Spreadsheet();
     $sheet = $spreadsheet->getActiveSheet();
     $sheet->setCellValue('A1', 'Hello 你好 !');
-							
+
     $sheet->getStyle('B')->getNumberFormat()->setFormatCode(NumberFormat::FORMAT_TEXT);
     $sheet->getStyle('C')->getNumberFormat()->setFormatCode(NumberFormat::FORMAT_TEXT);
     $sheet->getStyle('D')->getNumberFormat()->setFormatCode(NumberFormat::FORMAT_TEXT);
@@ -111,6 +111,31 @@ demo：
 
     $writer = new Xlsx($spreadsheet);
     $writer->save('hello world.xlsx');
+?>
+加载已有xls文件：
+<?php
+    date_default_timezone_set("Asia/Shanghai");
+    require 'vendor/autoload.php';
+
+    use PhpOffice\PhpSpreadsheet\Spreadsheet;
+    use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+    use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
+    use PhpOffice\PhpSpreadsheet\Cell\DataType;
+    use PhpOffice\PhpSpreadsheet\IOFactory;
+
+    $spreadsheet = IOFactory::load('temp.xlsx');
+
+	$worksheet = $spreadsheet->getActiveSheet();
+
+//	$worksheet->getCell('A1')->setValue('John');
+	$worksheet->getCell('A2')->setValue('Smith');
+	$worksheet->getCell('D2')->setValue('123456789654123');
+	$worksheet->getCell('E2')->setValue('6222222784565154');
+	//通过工厂模式来写内容
+	$writer = IOFactory::createWriter($spreadsheet, 'Xls');
+	$writer->save('twrite.xls');
+    
+    
 ?>
 ```
 
