@@ -7,7 +7,7 @@
 ```
 tar -xzxv php-5.6.30.tar.gz
 ./configure --prefix=/usr/local/php --with-config-file-path=/etc/ --with-mysql --with-zlib-dir=/usr/local/zlib/
- --enable-soap --enable-mbstring=all --enable-sockets --enable-fpm
+ --enable-soap --enable-mbstring=all --enable-sockets --enable-fpm --with-openssl
 make
 make install
 
@@ -55,4 +55,15 @@ extension=pgsql.so
 extension=redis.so
 
 php -m 查看加载了哪些扩展。
+
+##### composer 安装
+
+```
+curl -sS https://getcomposer.org/installer | php
+或者
+php -r "readfile('https://getcomposer.org/installer');" | php
+mv composer.phar /usr/local/bin/composer
+```
+
+
 
