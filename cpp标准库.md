@@ -4,7 +4,7 @@
 
 #### 1、template 表达式内的空格
 
- 在两个template表达式的闭符之间放一个空格 的要求已经过时了。
+在两个template表达式的闭符之间放一个空格 的要求已经过时了。
 
 ```
 vector<list<list> >;  所有版本支持
@@ -77,6 +77,80 @@ for (auto& elem : vi)
     elem *= 3;  //数组每个元素*3
 }
 ```
+
+6、move语义和右值引用
+
+move 用以避免非必要拷贝和临时对象。例如，String的move构造函数只是将既有的内部字符数组赋予新对象， 而非建立一个新的array然后复制所有元素。同样情况也适用于所有集合class： 不再为所有元素建立一份拷贝，只需将内部内存赋予新对象就行。将被传入对象复制nullptr。
+
+```
+template < typename T,...>
+class set
+{
+    public:
+    ... insert (const T& x);
+    ... insert (T&& x); //右值引用
+}
+```
+
+7、 新式的字符串字面常量
+
+Raw String Literal, 正则表达式时特别有用。
+
+```
+string s1 = "\\\\n";
+string s2 = R"(\\n)"; 
+```
+
+前缀编码
+
+**u8**  定义一个UTF-8编码。
+
+**u**  char16\_t 的字符
+
+**U ** char32\_t的字符
+
+**L** wchar\_t 的字符
+
+8、关键字noexcept， constexpr
+
+noexcept   指明某个函数 不打算抛出异常，如果抛出异常，程序会被终止。
+
+constexpr 让表达式核定于编译器
+
+```
+constexpre int square(int x)
+{
+    return x * x;
+}
+float a[square(9)]; //OK since c++ 11
+```
+
+9、Template 特性 
+
+    template 可拥有那种“ 得意接受个数不定之template实参” 的参数。
+
+  带别名的模板
+
+```
+template <typename T>
+using Vec = std::vector<T, MyAlloc<t>>;
+
+Vec<int> coll;
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
