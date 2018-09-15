@@ -4,7 +4,7 @@
 
 #### 1、template 表达式内的空格
 
-     在两个template表达式的闭符之间放一个空格 的要求已经过时了。
+ 在两个template表达式的闭符之间放一个空格 的要求已经过时了。
 
 ```
 vector<list<list> >;  所有版本支持
@@ -33,7 +33,7 @@ auto i; //error 推导失败
 
 4、一致性初始化与初始化列
 
-    对任何初始化动作，都可使用相同语法，使用大括号初始化。
+对任何初始化动作，都可使用相同语法，使用大括号初始化。
 
 ```
 int  values[] {1, 2, 3};
@@ -57,8 +57,25 @@ char c3{9999} //error narrowing
 
 5、Range-Based for 循环
 
-```
+一种新的for循环，类似用其他语言的foreach
 
+```
+for ( decl : coll)
+{
+    statement
+}
+
+for (int i : {1, 2, 3})
+{
+    cout << i << endl;
+}
+
+vector<int> vi;
+...
+for (auto& elem : vi)
+{
+    elem *= 3;  //数组每个元素*3
+}
 ```
 
 
