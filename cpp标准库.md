@@ -98,7 +98,7 @@ Raw String Literal, 正则表达式时特别有用。
 
 ```
 string s1 = "\\\\n";
-string s2 = R"(\\n)"; 
+string s2 = R"(\\n)";
 ```
 
 前缀编码
@@ -125,11 +125,13 @@ constexpre int square(int x)
 float a[square(9)]; //OK since c++ 11
 ```
 
-9、Template 特性 
+9、Template 特性
 
-    template 可拥有那种“ 得意接受个数不定之template实参” 的参数。
+```
+template 可拥有那种“ 得意接受个数不定之template实参” 的参数。
+```
 
-  带别名的模板
+带别名的模板
 
 ```
 template <typename T>
@@ -138,19 +140,44 @@ using Vec = std::vector<T, MyAlloc<t>>;
 Vec<int> coll;
 ```
 
+10. Lambda 函数
 
+Lambda 是个没有名字的函数对象。
 
+```
+[]
+{
+    cout << "hello lambda" << endl;
+}
+直接调用
+[]
+{
+    cout << "hello lambda" << endl;
+}();
 
+auto l = []{cout << "hello" << endl;};
+l();
+//传参
+auto l = [](string s)
+{
+    cout << s << endl;
+}；
+l("hello");
+//访问外界数据
+auto l = [x, &y]
+{
+    cout << x << y << endl;
+    y++;
+    x++; //error
+}
 
-
-
-
-
-
-
-
-
-
+//mutable 修饰  参数可修改
+auto f = [id]()mutable
+{
+    cout << id << endl;
+    id++;
+}
+```
 
 
 
