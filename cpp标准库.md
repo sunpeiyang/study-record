@@ -31,7 +31,7 @@ auto d = f(); // d  is double
 auto i; //error 推导失败
 ```
 
-4、一致性初始化与初始化列
+#### 4、一致性初始化与初始化列
 
 对任何初始化动作，都可使用相同语法，使用大括号初始化。
 
@@ -55,12 +55,11 @@ char c2{7}; //ok
 char c3{9999} //error narrowing
 ```
 
-5、Range-Based for 循环
+#### 5、Range-Based for 循环
 
 一种新的for循环，类似用其他语言的foreach
 
 ```
-for ( decl : coll)
 {
     statement
 }
@@ -78,7 +77,7 @@ for (auto& elem : vi)
 }
 ```
 
-6、move语义和右值引用
+#### 6、move语义和右值引用
 
 move 用以避免非必要拷贝和临时对象。例如，String的move构造函数只是将既有的内部字符数组赋予新对象， 而非建立一个新的array然后复制所有元素。同样情况也适用于所有集合class： 不再为所有元素建立一份拷贝，只需将内部内存赋予新对象就行。将被传入对象复制nullptr。
 
@@ -92,7 +91,7 @@ class set
 }
 ```
 
-7、 新式的字符串字面常量
+#### 7、 新式的字符串字面常量
 
 Raw String Literal, 正则表达式时特别有用。
 
@@ -111,7 +110,7 @@ string s2 = R"(\\n)";
 
 **L** wchar\_t 的字符
 
-8、关键字noexcept， constexpr
+#### 8、关键字noexcept， constexpr
 
 noexcept   指明某个函数 不打算抛出异常，如果抛出异常，程序会被终止。
 
@@ -125,7 +124,7 @@ constexpre int square(int x)
 float a[square(9)]; //OK since c++ 11
 ```
 
-9、Template 特性
+#### 9、Template 特性
 
 ```
 template 可拥有那种“ 得意接受个数不定之template实参” 的参数。
@@ -140,7 +139,7 @@ using Vec = std::vector<T, MyAlloc<t>>;
 Vec<int> coll;
 ```
 
-10. Lambda 函数
+#### 10、Lambda 函数
 
 Lambda 是个没有名字的函数对象。
 
@@ -178,6 +177,58 @@ auto f = [id]()mutable
     id++;
 }
 ```
+
+#### 11、关键字decltype
+
+decltype 可让编译器找出表达式类型
+
+```
+map<string, int> coll;
+decltype(coll)::value_type elem;
+```
+
+#### 12、新的函数声明语法
+
+    可以将一个函数的返回类型转而声明于参数列只有：
+
+```
+template <typename T1, typename T2>
+auto add( T1 x, T2 y) -> decltype(x + y)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

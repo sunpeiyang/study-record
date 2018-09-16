@@ -38,19 +38,57 @@
 
 ## 智能指针
 
-         auto\_ptr, shared\_ptr, weak\_ptr, unique\_ptr 其中后三个是c++11支持，并且第一个已经被c++11弃用。
+```
+     auto_ptr, shared_ptr, weak_ptr, unique  _ptr 其中后三个是c++11支持，并且第一个已经被c++11弃用。
+```
 
-#####    shared\_ptr
+##### shared\_ptr
 
-      多个智能指针可以共享同一个对象, 对象的最后一个使用者销毁对象，并清理对象有关的资源。
+  多个智能指针可以共享同一个对象, 对象的最后一个使用者销毁对象，并清理对象有关的资源。
 
-   weak\_ptr
+##### weak\_ptr
 
-      
+    weak\_ptr 允许你共享但不拥有某对象，一旦最末一个拥有该对象的智能指针失去了所有权，任何 weak\_ptr 都会自动成空 （ empty）。因此，在 default 和 copy 构造函数之外，weak\_ptr 只提供 “接受一个 shared\_ptr” 的构造函数。
+
+    可打破环状引用（cycles of references，两个其实已经没有被使用的对象彼此互指，使之看似还在 “被使用” 的状态）的问题  
+
+##### uniq\_ptr
+
+     unique\_ptr 是 C++11 才开始提供的类型，是一种在异常时可以帮助避免资源泄漏的智能指针。采用独占式拥有，意味着可以确保一个对象和其相应的资源同一时间只被一个 pointer 拥有。一旦拥有着被销毁或编程 empty，或开始拥有另一个对象，先前拥有的那个对象就会被销毁，其任何相应资源亦会被释放。
+
+##### auto\_ptr 
+
+    c++11被弃用。由uniq\_ptr 替代
+
+```
+template<typename T>
+void bad_print(auto_ptr<T> p)
+{
+    if (p.get() == NULL)
+        cout << "null";
+    else
+        cout << *p;
+} //函数结束后会将p释放， 出错。
+```
+
+## 迭代器失效
+
+1、vector  
+
+   删除一个元素后，迭代器位置指向下一个元素地址。正确写法：
+
+```
+ for (auto it = a.begin(); it != a.end();)
+ {
+        if ((*it) == 5){
+            it=a.erase(it);
+        }
+        else
+            ++it;    
+}  
+```
+
+## 虚函数列表
 
 
-
-迭代器失效
-
-虚函数列表
 
